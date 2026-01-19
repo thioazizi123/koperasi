@@ -75,51 +75,6 @@
             </div>
         </div>
 
-        <!-- Recent Requests Table -->
-        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-            <div class="p-6 border-b border-gray-50 flex items-center justify-between">
-                <h3 class="text-lg font-bold text-slate-800">Pengajuan Pinjaman Terbaru</h3>
-                <a href="{{ route('loans.create') }}" class="btn-primary">Ajukan Baru</a>
-            </div>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm">
-                    <thead class="bg-slate-50">
-                        <tr class="text-slate-400 text-xs uppercase tracking-wider">
-                            <th class="px-6 py-4 font-medium">No. Pengajuan</th>
-                            <th class="px-6 py-4 font-medium">Tanggal</th>
-                            <th class="px-6 py-4 font-medium">Jumlah</th>
-                            <th class="px-6 py-4 font-medium text-center">Status</th>
-                            <th class="px-6 py-4 font-medium text-right">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-50">
-                        @forelse($loanRequests as $request)
-                            <tr class="hover:bg-slate-50/50 transition-colors">
-                                <td class="px-6 py-4 font-semibold text-slate-800">REQ-{{ $request->id }}</td>
-                                <td class="px-6 py-4 text-slate-500">{{ $request->created_at->format('d M Y') }}</td>
-                                <td class="px-6 py-4 font-bold text-slate-800">Rp
-                                    {{ number_format($request->amount, 0, ',', '.') }}
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <span
-                                        class="px-3 py-1 bg-kop-blue-50 text-kop-blue-600 rounded-full text-[10px] font-bold uppercase tracking-tight">
-                                        {{ str_replace('_', ' ', $request->status) }}
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <a href="{{ route('loans.show', $request->id) }}"
-                                        class="text-kop-blue-500 hover:text-kop-blue-700 font-bold transition-colors">Detail</a>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="5" class="px-6 py-10 text-center text-slate-400 italic">Belum ada pengajuan
-                                    pinjaman.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <!-- Recent Requests Table removed as it moved to History page -->
     </div>
 @endsection

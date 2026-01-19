@@ -53,7 +53,7 @@
 
                         if (auth()->user()->role === 'member') {
                             $pengajuanRoute = 'loans.create';
-                            $riwayatRoute = '#';
+                            $riwayatRoute = 'loan-requests.index';
                         } else {
                             $pengajuanRoute = 'loan-requests.index';
                             $riwayatRoute = 'staff.monitoring';
