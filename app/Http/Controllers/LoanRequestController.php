@@ -10,6 +10,20 @@ use Illuminate\Support\Facades\Auth;
 class LoanRequestController extends Controller
 {
     /**
+     * Menampilkan daftar semua pengajuan pinjaman untuk staf.
+     */
+    public function index()
+    {
+        $user = auth()->user();
+        if ($user->role === 'member') {
+            $loanRequests = $user->loanRequests()->with('user')->latest()->get();
+        } else {
+            $loanRequests = LoanRequest::with('user')->latest()->get();
+        }
+        return view('admin.loan_requests.index', compact('loanRequests'));
+    }
+
+    /**
      * Menampilkan detail pengajuan pinjaman.
      */
     public function show(LoanRequest $loanRequest)

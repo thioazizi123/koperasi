@@ -45,9 +45,10 @@ Route::middleware(['auth', 'role:finance'])->group(function () {
     Route::post('/finance/pencairan/{loanRequest}', [DisbursementController::class, 'disburse'])->name('finance.disburse.action');
 });
 
-// Routes untuk Monitoring (Bisa diakses Manager/Pengurus/Finance)
-Route::middleware(['auth', 'role:manager,management,finance'])->group(function () {
+// Routes untuk Monitoring & Semua Pengajuan (Bisa diakses Manager/Pengurus/Finance/CS/Member)
+Route::middleware(['auth', 'role:member,cs,manager,management,finance'])->group(function () {
     Route::get('/staff/monitoring', [StaffController::class, 'monitoringDashboard'])->name('staff.monitoring');
+    Route::get('/loan-requests', [LoanRequestController::class, 'index'])->name('loan-requests.index');
 });
 
 Route::middleware('auth')->group(function () {
@@ -56,4 +57,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
