@@ -24,11 +24,7 @@
                         </p>
                     </div>
                 </div>
-                @if(auth()->user()->role === 'member')
-                    <a href="{{ route('loans.create') }}" class="btn-primary">
-                        Ajukan Baru
-                    </a>
-                @endif
+
             </div>
         </div>
 
@@ -73,7 +69,8 @@
                                             class="w-8 h-8 rounded-full border border-kop-blue-100 shadow-sm">
                                         <div>
                                             <p class="font-bold text-slate-800 group-hover:text-kop-blue-600 transition-colors">
-                                                {{ $request->user->name }}</p>
+                                                {{ $request->user->name }}
+                                            </p>
                                             <p class="text-[10px] text-slate-400 font-medium">
                                                 #PR-{{ str_pad($request->id, 5, '0', STR_PAD_LEFT) }}</p>
                                         </div>
