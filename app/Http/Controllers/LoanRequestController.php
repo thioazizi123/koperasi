@@ -63,7 +63,7 @@ class LoanRequestController extends Controller
             'duration' => $request->duration,
             'purpose' => $request->purpose,
             'documents' => $documentPaths,
-            'status' => $request->has('submit') ? 'submitted' : 'draft',
+            'status' => $request->has('submit') ? 'approved' : 'draft',
         ]);
 
         return redirect()->route('dashboard')->with('success', 'Pengajuan pinjaman berhasil dikirim!');
