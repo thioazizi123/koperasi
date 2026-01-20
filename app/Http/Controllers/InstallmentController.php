@@ -12,12 +12,27 @@ use Carbon\Carbon;
 class InstallmentController extends Controller
 {
     /**
+     * Menampilkan daftar angsuran untuk anggota.
+     */
+    public function index()
+    {
+        $user = auth()->user();
+        $loans = Loan::where('user_id', $user->id)
+            ->with(['installments' => function($query) {
+                $query->orderBy('due_date', 'asc');
+            }])
+            ->get();
+
+        return view('installments.index', compact('loans'));
+    }
+
+    /**
      * Mencatat pembayaran angsuran.
      */
     public function pay(Installment $installment)
     {
         if ($installment->status === 'paid') {
-            return response()->json(['message' => 'Angsuran sudah lunas'], 422);
+            return back()->with('error', 'Angsuran sudah lunas');
         }
 
         DB::transaction(function () use ($installment) {
@@ -37,7 +52,7 @@ class InstallmentController extends Controller
             }
         });
 
-        return response()->json(['message' => 'Pembayaran berhasil dicatat']);
+        return redirect()->route('installments.index')->with('success', 'Pembayaran angsuran berhasil dicatat');
     }
 
     /**

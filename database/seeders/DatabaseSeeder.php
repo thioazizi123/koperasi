@@ -16,43 +16,53 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Member
-        User::factory()->create([
-            'name' => 'Anggota Koperasi',
-            'email' => 'anggota@example.com',
-            'role' => 'member',
-            'password' => bcrypt('password'),
-        ]);
+        User::updateOrCreate(
+            ['email' => 'anggota@example.com'],
+            [
+                'name' => 'Anggota Koperasi',
+                'role' => 'member',
+                'password' => bcrypt('password'),
+            ]
+        );
 
         // Customer Service
-        User::factory()->create([
-            'name' => 'CS Koperasi',
-            'email' => 'cs@example.com',
-            'role' => 'cs',
-            'password' => bcrypt('password'),
-        ]);
+        User::updateOrCreate(
+            ['email' => 'cs@example.com'],
+            [
+                'name' => 'CS Koperasi',
+                'role' => 'cs',
+                'password' => bcrypt('password'),
+            ]
+        );
 
         // Manager
-        User::factory()->create([
-            'name' => 'Manager Pinjam Simpan',
-            'email' => 'manager@example.com',
-            'role' => 'manager',
-            'password' => bcrypt('password'),
-        ]);
+        User::updateOrCreate(
+            ['email' => 'manager@example.com'],
+            [
+                'name' => 'Manager Pinjam Simpan',
+                'role' => 'manager',
+                'password' => bcrypt('password'),
+            ]
+        );
 
         // Pengurus (Management)
-        User::factory()->create([
-            'name' => 'Pengurus Koperasi',
-            'email' => 'pengurus@example.com',
-            'role' => 'management',
-            'password' => bcrypt('password'),
-        ]);
+        User::updateOrCreate(
+            ['email' => 'pengurus@example.com'],
+            [
+                'name' => 'Pengurus Koperasi',
+                'role' => 'management',
+                'password' => bcrypt('password'),
+            ]
+        );
 
         // Finance
-        User::factory()->create([
-            'name' => 'Bagian Keuangan',
-            'email' => 'finance@example.com',
-            'role' => 'finance',
-            'password' => bcrypt('password'),
-        ]);
+        User::updateOrCreate(
+            ['email' => 'finance@example.com'],
+            [
+                'name' => 'Bagian Keuangan',
+                'role' => 'finance',
+                'password' => bcrypt('password'),
+            ]
+        );
     }
 }

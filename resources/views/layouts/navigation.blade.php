@@ -15,6 +15,17 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if(auth()->user()->role === 'member')
+                    <x-nav-link :href="route('installments.index')" :active="request()->routeIs('installments.index')">
+                        {{ __('Angsuran Saya') }}
+                    </x-nav-link>
+                    @endif
+
+                    @if(in_array(auth()->user()->role, ['cs', 'manager', 'management', 'finance']))
+                    <x-nav-link :href="route('staff.monitoring')" :active="request()->routeIs('staff.monitoring')">
+                        {{ __('Monitoring') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -70,6 +81,17 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if(auth()->user()->role === 'member')
+            <x-responsive-nav-link :href="route('installments.index')" :active="request()->routeIs('installments.index')">
+                {{ __('Angsuran Saya') }}
+            </x-responsive-nav-link>
+            @endif
+
+            @if(in_array(auth()->user()->role, ['cs', 'manager', 'management', 'finance']))
+            <x-responsive-nav-link :href="route('staff.monitoring')" :active="request()->routeIs('staff.monitoring')">
+                {{ __('Monitoring') }}
+            </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

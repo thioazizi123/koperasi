@@ -78,6 +78,15 @@
                         </svg>
                         <span>Pengajuan</span>
                     </a>
+                    @if(auth()->user()->role === 'member')
+                    <a href="{{ route('installments.index') }}"
+                        class="flex items-center space-x-3 p-3 rounded-lg {{ request()->routeIs('installments.index') ? 'bg-kop-blue-100 text-kop-blue-900 font-medium' : 'text-kop-blue-600 hover:bg-kop-blue-100 transition-colors' }}">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <span>Angsuran Saya</span>
+                    </a>
+                    @endif
                     <a href="{{ $riwayatRoute != '#' ? route($riwayatRoute) : '#' }}"
                         class="flex items-center space-x-3 p-3 rounded-lg {{ (auth()->user()->role === 'member' && request()->routeIs('loan-requests.index')) || request()->routeIs('staff.monitoring') ? 'bg-kop-blue-100 text-kop-blue-900 font-medium' : 'text-kop-blue-600 hover:bg-kop-blue-100 transition-colors' }}">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

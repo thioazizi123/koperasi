@@ -11,14 +11,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Routes Umum (Terautentikasi)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
 // Routes untuk Anggota
 Route::middleware(['auth', 'role:member'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/loans/create', function () {
         return view('loans.create');
     })->name('loans.create');
     Route::post('/loans', [LoanRequestController::class, 'store'])->name('loans.store');
     Route::get('/loans/{loanRequest}', [LoanRequestController::class, 'show'])->name('loans.show');
+    Route::get('/installments', [\App\Http\Controllers\InstallmentController::class, 'index'])->name('installments.index');
+    Route::post('/installments/{installment}/pay', [\App\Http\Controllers\InstallmentController::class, 'pay'])->name('installments.pay');
 });
 
 // Routes untuk Customer Service
