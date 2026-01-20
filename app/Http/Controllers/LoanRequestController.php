@@ -43,7 +43,7 @@ class LoanRequestController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'amount' => 'required|numeric|min:100000',
+            'amount' => 'required|numeric|min:50000|max:10000000',
             'duration' => 'required|integer|min:1',
             'purpose' => 'required|string',
             'documents.*' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:5120',

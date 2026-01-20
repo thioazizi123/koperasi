@@ -20,4 +20,20 @@
     .form-input {
         @apply w-full px-4 py-2 rounded-xl border-gray-200 focus:border-kop-blue-400 focus:ring focus:ring-kop-blue-100 transition-all outline-none;
     }
+
+    /* Hide number input arrows */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    /* Hide datalist arrow */
+    input::-webkit-calendar-picker-indicator {
+        display: none !important;
+    }
 }
