@@ -22,7 +22,7 @@ Route::middleware(['auth', 'role:member'])->group(function () {
         return view('loans.create');
     })->name('loans.create');
     Route::post('/loans', [LoanRequestController::class, 'store'])->name('loans.store');
-    Route::get('/loans/{loanRequest}', [LoanRequestController::class, 'show'])->name('loans.show');
+
     Route::get('/installments', [\App\Http\Controllers\InstallmentController::class, 'index'])->name('installments.index');
     Route::post('/installments/{installment}/pay', [\App\Http\Controllers\InstallmentController::class, 'pay'])->name('installments.pay');
 });
@@ -55,6 +55,7 @@ Route::middleware(['auth', 'role:finance'])->group(function () {
 Route::middleware(['auth', 'role:member,cs,manager,management,finance'])->group(function () {
     Route::get('/staff/monitoring', [StaffController::class, 'monitoringDashboard'])->name('staff.monitoring');
     Route::get('/loan-requests', [LoanRequestController::class, 'index'])->name('loan-requests.index');
+    Route::get('/loans/{loanRequest}', [LoanRequestController::class, 'show'])->name('loans.show');
 });
 
 Route::middleware('auth')->group(function () {
